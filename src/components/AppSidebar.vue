@@ -1,6 +1,6 @@
 <template>
     <aside class="menu sidebar" v-if="api.info">
-        <h3>{{api.info.name}}</h3>
+        <router-link :to="`/api/`"><h3>{{api.info.name}}</h3></router-link>
 
         <ul class="menu-list">
                 <sidebar-links v-if="api.item" v-for="item in api.item" :items="item" :path="`/api`"></sidebar-links>
@@ -22,7 +22,7 @@
 <style scoped>
     .sidebar {
         z-index: 10;
-        top: 0px;
+        top: 50px;
         left: 0;
         bottom: 0;
         overflow-x: hidden;

@@ -1,6 +1,16 @@
 <template>
   <div class="columns">
     <div class="column is-3">
+      <div class="field has-addons">
+        <div class="control">
+          <input class="input" type="text" v-model="url" placeholder="URL to collection.json">
+        </div>
+        <div class="control">
+          <button class="button is-info" @click="getApi">
+            Load
+          </button>
+        </div>
+      </div>
       <app-sidebar :api="api"></app-sidebar>
     </div>
     <div class="column is-9">
@@ -29,18 +39,29 @@ export default {
   },
   data() {
     return {
-      api: {}
+      api: {},
+      url: ''
     }
   },
   mounted() {
-    fetch('postman.json').then(response => response.json()).then(data => {
-      console.log(data);
-      this.api = data;
-    }).catch(error => {
-      console.log(error);
-    });
+    let url = localStorage.getItem('apiUrl');
+    if(url){
+      this.sendApiRequest(url);
+    }
   },
   methods: {
+    getApi(){
+      this.sendApiRequest(this.url);
+    },
+    sendApiRequest(url){
+        fetch(url).then(response => response.json()).then(data => {
+          console.log(data);
+          localStorage.setItem('apiUrl', url);
+          this.api = data;
+        }).catch(error => {
+          console.log(error);
+        });
+    },
     getPath(name){
       return `/#/api/${name}`;
     }
