@@ -1,0 +1,75 @@
+<template>
+    <li class="item">
+            <b-collapse  :open.sync="isOpen" v-if="items.item" >
+                <div slot="trigger">
+                    <router-link :to="getPath(items.name)" active-class="is-active">
+                        <b-icon
+                                :icon="icon"
+                                size="is-small">
+                        </b-icon>
+                        {{items.name}}
+                    </router-link>
+                </div>
+
+                <div class="links-block">
+                    <ul class="menu-list">
+                        <sidebar-links v-for="item in items.item" :items="item" :path="getPath(items.name)"></sidebar-links>
+                    </ul>
+                </div>
+            </b-collapse>
+
+        <div v-else class="control">
+            <router-link :to="getPath(items.name)" active-class="is-active">
+                <div class="tags has-addons">
+                    <span class="tag is-success tag-width" v-if="items.request.method == 'GET'">{{items.request.method}}</span>
+                    <span class="tag is-warning tag-width" v-if="items.request.method == 'POST'">{{items.request.method}}</span>
+                    <span class="tag is-info tag-width" v-if="items.request.method == 'PUT'">{{items.request.method}}</span>
+                    <span class="tag is-danger tag-width" v-if="items.request.method == 'DELETE'">{{items.request.method}}</span>
+                    <span class="tag"> {{items.name}}</span>
+                </div>
+            </router-link>
+        </div>
+    </li>
+
+</template>
+
+<script>
+    export default {
+        name: "SidebarLinks",
+        props: {
+            items: [Array, Object],
+            path: String
+        },
+        data(){
+            return {
+                isOpen: false
+            }
+        },
+        computed: {
+            icon(){
+                return this.isOpen ? 'folder-open' : 'folder';
+            }
+        },
+        methods: {
+            getPath(name){
+                return `${this.path}/${name}`;
+            }
+        }
+    }
+</script>
+
+<style scoped>
+    .item{
+        padding-left: 0em;
+    }
+    .links-block{
+        border: 1px solid #f5f5f5;
+        margin-bottom: 1em;
+    }
+    .tag {
+        justify-content: left;
+    }
+    .tag-width {
+        width: 60px;
+    }
+</style>
