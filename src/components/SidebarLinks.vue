@@ -2,13 +2,13 @@
     <li class="item">
             <b-collapse  :open.sync="isOpen" v-if="items.item" >
                 <div slot="trigger">
-                    <router-link :to="getPath(items.name)" active-class="is-active">
+                    <a :href="getIdPath(items.name)" active-class="is-active" v-scroll-to="getIdPath(items.name)">
                         <b-icon
                                 :icon="icon"
                                 size="is-small">
                         </b-icon>
                         {{items.name}}
-                    </router-link>
+                    </a>
                 </div>
 
                 <div class="links-block">
@@ -19,7 +19,7 @@
             </b-collapse>
 
         <div v-else class="control">
-            <router-link :to="getPath(items.name)" active-class="is-active">
+            <a :href="getIdPath(items.name)" active-class="is-active" v-scroll-to="getIdPath(items.name)">
                 <div class="tags has-addons">
                     <span class="tag is-success tag-width" v-if="items.request.method == 'GET'">{{items.request.method}}</span>
                     <span class="tag is-warning tag-width" v-if="items.request.method == 'POST'">{{items.request.method}}</span>
@@ -27,7 +27,7 @@
                     <span class="tag is-danger tag-width" v-if="items.request.method == 'DELETE'">{{items.request.method}}</span>
                     <span class="tag"> {{items.name}}</span>
                 </div>
-            </router-link>
+            </a>
         </div>
     </li>
 
@@ -53,6 +53,9 @@
         methods: {
             getPath(name){
                 return `${this.path}/${name}`;
+            },
+            getIdPath(name) {
+                return '#'+this.getPath(name).replace(/\/|\s/ig, '-');
             }
         }
     }

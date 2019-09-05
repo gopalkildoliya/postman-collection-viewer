@@ -1,13 +1,14 @@
 <template>
     <div style="margin: 1em">
-        <collection-folder v-if="currentPath.item" :item="currentPath"></collection-folder>
-        <collection-request v-else :item="currentPath"></collection-request>
+        <collection-folder v-if="currentPath.item" :item="currentPath" :path="`api`"></collection-folder>
+        <collection-request v-else :item="currentPath" :path="`api`"></collection-request>
     </div>
 </template>
 
 <script>
     import CollectionFolder from './CollectionFolder';
     import CollectionRequest from './CollectionRequest';
+    
     export default {
         name: "RequestView",
         components: {CollectionFolder, CollectionRequest},
@@ -17,6 +18,7 @@
                console.log(path);
                console.log(api);
                let _path = path.shift();
+               return api;
                if(!api.item){
                    return api;
                }
@@ -32,6 +34,7 @@
         },
         computed: {
             currentPath(){
+                return this.$attrs.api;
                 let lines = this.$route.params.pathMatch.split('/')
                 return this.getItem(this.$attrs.api, lines);
 

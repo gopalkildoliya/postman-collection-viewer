@@ -1,9 +1,9 @@
 <template>
     <aside class="menu sidebar" v-if="api.info">
-        <router-link :to="`/api/`"><h3>{{api.info.name}}</h3></router-link>
+        <a href="#api"><h3>{{api.info.name}}</h3></a>
 
         <ul class="menu-list">
-                <sidebar-links v-if="api.item" v-for="item in api.item" :items="item" :path="`/api`"></sidebar-links>
+                <sidebar-links v-if="api.item" v-for="item in api.item" :items="item" :path="`api`"></sidebar-links>
         </ul>
     </aside>
 </template>

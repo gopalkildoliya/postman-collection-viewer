@@ -1,10 +1,10 @@
 <template>
-    <div class="box">
+    <div class="box" v-bind:id="getIdPath(item.name)">
         <h3 class="title is-3">{{item.name}}</h3>
         <hr>
-        <div v-for="item in item.item">
-            <collection-folder v-if="item.item" :item="item"></collection-folder>
-            <collection-request v-else :item="item"></collection-request>
+        <div v-for="innerItem in item.item">
+            <collection-folder v-if="innerItem.item" :item="innerItem" :path="getPath(item.name)"></collection-folder>
+            <collection-request v-else :item="innerItem" :path="getPath(item.name)"></collection-request>
         </div>
     </div>
 </template>
@@ -16,11 +16,24 @@
         name: "CollectionFolder",
         components: {CollectionRequest},
         props: {
-            item: Object
+            item: Object,
+            path: String
         },
+        methods: {
+            getPath(name){
+                if(name)
+                return `${this.path}/${name}`;
+                return this.path
+            },
+            getIdPath(name) {
+                return this.getPath(name).replace(/\/|\s/ig, '-');
+            }
+        }
     }
 </script>
 
 <style scoped>
-
+.box {
+    margin-bottom: 10px;
+}
 </style>

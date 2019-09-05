@@ -1,5 +1,5 @@
 <template>
-    <div v-bind:class="classObject">
+    <div v-bind:class="classObject" v-bind:id="getIdPath(item.name)">
         <h4 class="message-header">{{item.name}}</h4>
         <div class="message-body">
             <div v-if="item.request">
@@ -38,7 +38,8 @@
         name: "CollectionRequest",
         components: {RequestExample},
         props: {
-            item: Object
+            item: Object,
+            path: String
         },
         computed: {
             request(){
@@ -55,6 +56,14 @@
             }
         },
         methods: {
+            getPath(name){
+                if(name)
+                return `${this.path}/${name}`;
+                return this.path
+            },
+            getIdPath(name) {
+                return this.getPath(name).replace(/\/|\s/ig, '-');
+            }
         }
     }
 </script>

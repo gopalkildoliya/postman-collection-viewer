@@ -4,6 +4,10 @@ import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 import VueRouter from 'vue-router'
 
+var VueScrollTo = require('vue-scrollto');
+
+Vue.use(VueScrollTo)
+
 import RequestView from './components/RequestView';
 import MarkdownView from './components/MarkdownView';
 Vue.use(Buefy)
@@ -20,6 +24,5 @@ const router = new VueRouter({
 })
 
 new Vue({
-  router,
   render: h => h(App),
 }).$mount('#app')

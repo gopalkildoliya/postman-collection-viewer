@@ -21,7 +21,10 @@
         </div>
 
       </div>
-      <router-view :api="api"></router-view>
+      <div>
+      <request-view :api="api"></request-view>
+      </div>
+      
     </div>
   </div>
 
@@ -30,10 +33,11 @@
 <script>
   import CollectionFolder from './CollectionFolder';
   import CollectionRequest from './CollectionRequest';
+  import RequestView from './RequestView';
   import AppSidebar from './AppSidebar';
 export default {
   name: 'HelloWorld',
-  components: {CollectionFolder, CollectionRequest, AppSidebar},
+  components: {CollectionFolder, CollectionRequest, AppSidebar, RequestView},
   props: {
     msg: String
   },
