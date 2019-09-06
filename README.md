@@ -1,6 +1,9 @@
 # Postman Collection Viewer
-
+View your Postman collection documentation in browser.
 Demo: https://postman-collection-viewer.herokuapp.com
+
+![Screenshot](/pcv.png)
+
 
 ## Project setup
 ```
