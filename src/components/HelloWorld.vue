@@ -1,14 +1,15 @@
 <template>
-
-  <div class="columns">
+  <div>
+  <app-nav></app-nav>
+  <div class="columns" style="padding-top:20px">
     <div class="column is-3">
       
       <app-sidebar :api="api"></app-sidebar>
     </div>
     <div class="column is-9" style="padding-top:10px;">
     <section>
-    
-      <div class="field has-addons">
+      <div class="columns">
+        <div class="field has-addons column">
           <div class="control">
             <input class="input" type="text" v-model="url" placeholder="URL to collection.json">
           </div>
@@ -18,7 +19,10 @@
             </button>
           </div>
         </div>
-        <div>
+        <div class="column is-1">
+          OR
+        </div>
+        <div class="column">
           <b-field class="file">
               <b-upload v-model="file" @input="uploadFile">
                   <a class="button is-primary">
@@ -30,6 +34,7 @@
                   {{ file.name }}
               </span>
           </b-field>
+        </div>
         </div>
       </section>
       <div>
@@ -45,7 +50,7 @@
       
     </div>
   </div>
-
+</div>
 </template>
 
 <script>
@@ -53,9 +58,10 @@
   import CollectionRequest from './CollectionRequest';
   import RequestView from './RequestView';
   import AppSidebar from './AppSidebar';
+  import AppNav from './AppNav';
 export default {
   name: 'HelloWorld',
-  components: {CollectionFolder, CollectionRequest, AppSidebar, RequestView},
+  components: {CollectionFolder, CollectionRequest, AppSidebar, RequestView, AppNav},
   props: {
     msg: String
   },

@@ -22,7 +22,7 @@
 <style scoped>
     .sidebar {
         z-index: 10;
-        top: 50px;
+        top: 60px;
         left: 0;
         bottom: 0;
         overflow-x: hidden;
