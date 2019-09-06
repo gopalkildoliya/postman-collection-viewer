@@ -1,4 +1,6 @@
-# postman-docs-view
+# Postman Collection Viewer
+
+Demo: https://postman-collection-viewer.herokuapp.com
 
 ## Project setup
 ```
