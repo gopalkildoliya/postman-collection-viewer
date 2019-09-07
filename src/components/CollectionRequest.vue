@@ -62,7 +62,7 @@
                 return this.path
             },
             getIdPath(name) {
-                return this.getPath(name).replace(/\/|\s/ig, '-');
+                return this.getPath(name).replace(/\W/ig, '-');
             }
         }
     }

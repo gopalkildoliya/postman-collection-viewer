@@ -2,24 +2,26 @@
   <div>
   <app-nav></app-nav>
   <div class="columns" style="padding-top:20px">
-    <div class="column is-3">
+    <div class="column is-3 is-hidden-mobile">
       
       <app-sidebar :api="api"></app-sidebar>
     </div>
     <div class="column is-9" style="padding-top:10px;">
-    <section>
+    <section style="padding:5px;">
       <div class="columns">
-        <div class="field has-addons column">
-          <div class="control">
-            <input class="input" type="text" v-model="url" placeholder="URL to collection.json">
-          </div>
-          <div class="control">
-            <button class="button is-info" @click="getApi">
-              Load
-            </button>
+        <div class="column">
+          <div class="field has-addons">
+            <div class="control">
+              <input class="input" type="text" v-model="url" placeholder="URL to collection.json">
+            </div>
+            <div class="control">
+              <button class="button is-info" @click="getApi">
+                Load
+              </button>
+            </div>
           </div>
         </div>
-        <div class="column is-1">
+        <div class="column is-1 is-hidden-mobile">
           OR
         </div>
         <div class="column">
@@ -37,15 +39,18 @@
         </div>
         </div>
       </section>
-      <div>
+      <div style="padding: 5px;">
         <div v-if="api.info" class="box">
           <h3>{{api.info.name}}</h3>
           <markdown-view :data="api.info.description"></markdown-view>
         </div>
 
       </div>
-      <div>
-      <request-view :api="api"></request-view>
+      <div style="padding: 5px;">
+        <div v-for="innerItem in api.item">
+            <collection-folder v-if="innerItem.item" :item="innerItem" :path="`api`"></collection-folder>
+            <collection-request v-else :item="innerItem" :path="api"></collection-request>
+        </div>
       </div>
       
     </div>
@@ -73,7 +78,7 @@ export default {
     }
   },
   mounted() {
-    let url = localStorage.getItem('apiUrl');
+    let url = localStorage.getItem('apiUrl') || 'https://raw.githubusercontent.com/gothinkster/realworld/master/api/Conduit.postman_collection.json';
     if(url){
       this.sendApiRequest(url);
     }

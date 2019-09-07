@@ -1,5 +1,5 @@
 <template>
-    <div style="margin: 1em">
+    <div>
         <collection-folder v-if="currentPath.item" :item="currentPath" :path="`api`"></collection-folder>
         <collection-request v-else :item="currentPath" :path="`api`"></collection-request>
     </div>
