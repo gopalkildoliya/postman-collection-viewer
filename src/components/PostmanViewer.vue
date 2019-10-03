@@ -3,7 +3,7 @@
   <app-nav></app-nav>
   <div class="columns" style="padding-top:20px">
     <div class="column is-3 is-hidden-mobile">
-      
+
       <app-sidebar :api="api"></app-sidebar>
     </div>
     <div class="column is-9" style="padding-top:10px;">
@@ -52,7 +52,7 @@
             <collection-request v-else :item="innerItem" :path="api"></collection-request>
         </div>
       </div>
-      
+
     </div>
   </div>
 </div>
@@ -65,7 +65,7 @@
   import AppSidebar from './AppSidebar';
   import AppNav from './AppNav';
 export default {
-  name: 'HelloWorld',
+  name: 'PostmanViewer',
   components: {CollectionFolder, CollectionRequest, AppSidebar, RequestView, AppNav},
   props: {
     msg: String
@@ -110,7 +110,7 @@ export default {
              console.log("Invalid Data");
              return;
           }
-          
+
           if (data.info) {
             that.api = data;
           } else {
