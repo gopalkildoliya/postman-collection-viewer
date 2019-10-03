@@ -1,14 +1,14 @@
 <template>
-  <HelloWorld />
+  <PostmanViewer />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import PostmanViewer from './components/PostmanViewer.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    PostmanViewer
   }
 }
 </script>
