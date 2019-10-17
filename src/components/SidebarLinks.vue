@@ -22,8 +22,8 @@
             <a :href="getIdPath(items.name)" active-class="is-active" v-scroll-to="getIdPath(items.name)">
                 <div class="tags has-addons">
                     <span class="tag is-success tag-width" v-if="items.request.method == 'GET'">{{items.request.method}}</span>
-                    <span class="tag is-warning tag-width" v-if="items.request.method == 'POST'">{{items.request.method}}</span>
-                    <span class="tag is-info tag-width" v-if="items.request.method == 'PUT'">{{items.request.method}}</span>
+                    <span class="tag is-info tag-width" v-if="items.request.method == 'POST'">{{items.request.method}}</span>
+                    <span class="tag is-warning tag-width" v-if="items.request.method == 'PUT'">{{items.request.method}}</span>
                     <span class="tag is-danger tag-width" v-if="items.request.method == 'DELETE'">{{items.request.method}}</span>
                     <span class="tag"> {{items.name}}</span>
                 </div>
