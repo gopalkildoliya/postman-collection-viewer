@@ -1,5 +1,6 @@
 <template>
     <div v-bind:class="classObject" v-bind:id="getIdPath(item.name)">
+        <a v-bind:id="item.id"></a>
         <h4 class="message-header">{{item.name}}</h4>
         <div class="message-body">
             <div v-if="item.request">
@@ -11,20 +12,20 @@
                           </select>
                         </span>
                     </p>
-                    <p class="control is-expanded">
-                        <input disabled class="input" type="text" :value="item.request.url.raw" placeholder="URL">
+                    <p class="control is-expanded" v-if="item.request.url">
+                        <input disabled class="input" type="text" :value="item.request.url.getRaw()" placeholder="URL">
                     </p>
                 </div>
-                <markdown-view :data="item.request.description">
+                <markdown-view v-if="item.request.description" :data="item.request.description.toString()">
                 </markdown-view>
-                <div class="box" v-if="item.request.method === 'POST'">
+                <div class="box" v-if="item.request.body">
                     Request Body
                     <pre  v-html="item.request.body.raw">
                     </pre>
                 </div>
                 <div>
                     Response
-                    <request-example v-for="response in item.response" :response="response"></request-example>
+                    <request-example v-for="response in item.responses.all()" :response="response"></request-example>
                 </div>
 
             </div>

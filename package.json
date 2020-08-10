@@ -13,6 +13,7 @@
   "dependencies": {
     "core-js": "^2.6.11",
     "express": "^4.17.1",
+    "postman-collection": "^3.6.4",
     "vue": "^2.6.11",
     "vue-scrollto": "^2.18.2"
   },

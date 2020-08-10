@@ -1,8 +1,8 @@
 <template>
     <li class="item">
-            <b-collapse  :open.sync="isOpen" v-if="items.item" >
+            <b-collapse  :open.sync="isOpen" v-if="isItemGroup(items)" >
                 <div slot="trigger">
-                    <a :href="getIdPath(items.name)" active-class="is-active" v-scroll-to="getIdPath(items.name)">
+                    <a :href="getIdPath(items.id)" active-class="is-active">
                         <b-icon
                                 :icon="icon"
                                 size="is-small">
@@ -13,13 +13,13 @@
 
                 <div class="links-block">
                     <ul class="menu-list">
-                        <sidebar-links v-for="item in items.item" :items="item" :path="getPath(items.name)"></sidebar-links>
+                        <sidebar-links v-for="item in items.items.all()" :items="item" v-bind:key="item.id"></sidebar-links>
                     </ul>
                 </div>
             </b-collapse>
 
         <div v-else class="control">
-            <a :href="getIdPath(items.name)" active-class="is-active" v-scroll-to="getIdPath(items.name)">
+            <a :href="getIdPath(items.id)" active-class="is-active">
                 <div class="tags has-addons">
                     <span class="tag is-success tag-width" v-if="items.request.method == 'GET'">{{items.request.method}}</span>
                     <span class="tag is-info tag-width" v-if="items.request.method == 'POST'">{{items.request.method}}</span>
@@ -34,11 +34,13 @@
 </template>
 
 <script>
+    import collectionMixin from "../mixin/collectionMixin";
+
     export default {
         name: "SidebarLinks",
+        mixins: [collectionMixin],
         props: {
-            items: [Array, Object],
-            path: String
+            items: [Array, Object]
         },
         data(){
             return {
@@ -51,11 +53,8 @@
             }
         },
         methods: {
-            getPath(name){
-                return `${this.path}/${name}`;
-            },
             getIdPath(name) {
-                return '#'+this.getPath(name).replace(/\W/ig, '-');
+                return '#'+name;
             }
         }
     }

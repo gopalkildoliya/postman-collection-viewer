@@ -1,9 +1,9 @@
 <template>
-    <aside class="menu sidebar" v-if="api.info">
-        <a href="#api"><h3>{{api.info.name}}</h3></a>
+    <aside class="menu sidebar" v-if="collection && collection.name">
+        <a href="#api-home"><h3>{{collection.name}}</h3></a>
 
-        <ul class="menu-list">
-                <sidebar-links v-if="api.item" v-for="item in api.item" :items="item" :path="`api`"></sidebar-links>
+        <ul class="menu-list" v-if="collection.items">
+                <sidebar-links  v-for="item in collection.items.all()" :items="item" v-bind:key="item.id"></sidebar-links>
         </ul>
     </aside>
 </template>
@@ -14,7 +14,7 @@
         name: "AppSidebar",
         components: {SidebarLinks},
         props: {
-            api: Object
+            collection: Object
         },
     }
 </script>

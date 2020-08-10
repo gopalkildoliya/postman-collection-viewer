@@ -1,9 +1,10 @@
 <template>
     <div class="box" v-bind:id="getIdPath(item.name)">
+        <a v-bind:id="item.id"></a>
         <h3 class="title is-3">{{item.name}}</h3>
         <hr>
-        <div v-for="innerItem in item.item">
-            <collection-folder v-if="innerItem.item" :item="innerItem" :path="getPath(item.name)"></collection-folder>
+        <div v-for="innerItem in item.items.all()" v-bind:key="innerItem.id">
+            <collection-folder v-if="isItemGroup(innerItem)" :item="innerItem" :path="getPath(item.name)"></collection-folder>
             <collection-request v-else :item="innerItem" :path="getPath(item.name)"></collection-request>
         </div>
     </div>
@@ -11,10 +12,12 @@
 
 <script>
     import CollectionRequest from './CollectionRequest';
+    import collectionMixin from "../mixin/collectionMixin";
 
     export default {
         name: "CollectionFolder",
         components: {CollectionRequest},
+        mixins: [collectionMixin],
         props: {
             item: Object,
             path: String
