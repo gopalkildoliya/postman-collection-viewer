@@ -12,14 +12,16 @@
         <template slot="end">
             <b-navbar-item tag="div">
                 <div class="buttons">
-	                
-                    <a href="https://github.com/gopalkildoliya/postman-collection-viewer">
-                        <b-button size="is-medium" type="is-primary"
-	                		icon-left="github-circle">
-	                	Github
-	            		</b-button>
+                    <a href="https://github.com/gopalkildoliya/postman-collection-viewer" class="button is-primary">
+                            <b-icon icon="github-circle"></b-icon>
+                            <span>Github</span>
+                    </a>
+                    <a href="https://twitter.com/Gopalkildoliya" class="button is-info">
+                        <b-icon icon="twitter"></b-icon>
+                        <span>Gopal Kildoliya</span>
                     </a>
                 </div>
+
             </b-navbar-item>
         </template>
     </b-navbar>

@@ -1,5 +1,9 @@
 <template>
     <aside class="menu sidebar" v-if="collection && collection.name">
+        <div>
+            <a href="https://www.buymeacoffee.com/gopal" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
+        </div>
+
         <a href="#api-home"><h3>{{collection.name}}</h3></a>
 
         <ul class="menu-list" v-if="collection.items">
